@@ -11,6 +11,7 @@
     </script>
     <script src="/lib/epoxy.js"></script>
     <script src="/lib/epoxy.binders.js"></script>
+    <script src="/lib/epoxy.socketio.js"></script>
 </head>
 <body>
 
@@ -36,16 +37,18 @@
 
 <script> 
     Epoxy.initialize();
-    Epoxy.addListener(function(id, attr, value) {
+    Epoxy.addListener(function(id, binder, value) {
         var first = Epoxy.getValue('firstname');
         var last  = Epoxy.getValue('lastname');
 
-        if (attr == 'event:click') {
+        if (binder == 'event:click') {
             Epoxy.setValue('foobar', 'Hello my name is ' + first + ', ' + last);
         }
 
         Epoxy.setValue('textareafoo', first + ' ' + last);
     });
+
+    Epoxy.addListener(EpoxySocketIO('http://localhost:3000'));
 </script>
 
 

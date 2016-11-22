@@ -5,7 +5,7 @@ The focus of this simple library is to provide the ability to track changes to a
 
 ### Installation
 
-The files in the lib/ directory can be used standalone of any external dependency.  If you wish to view the kitchensink stuff you can run
+The files in the **lib/** directory can be used standalone of any external dependency.  If you wish to view the kitchensink stuff you can run
 
 ```
 git clone https://github.com/dcoded/epoxy.js

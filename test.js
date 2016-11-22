@@ -10,18 +10,23 @@ var server = app.listen(3000, function () {
 
 
 // 2: Setup websocket service
-// var io = require('socket.io')(server);
-// io.engine.ws = new (require('uws').Server)({
-//     noServer: true,
-//     perMessageDeflate: false
-// });
+var io = require('socket.io')(server);
+io.engine.ws = new (require('uws').Server)({
+    noServer: true,
+    perMessageDeflate: false
+});
 
 
-// io.on('connection', function(client) {
-//     console.log('Client connected...');
+io.on('connection', function(client) {
+    console.log('Client connected...');
 
-//     client.on('model-change', function(data) {
-//         console.log(data);
-//     });
+    client.on('epoxy.js', function(data) {
 
-// });
+        if (data.value == 'World') {
+            data.value = 'Land';
+            client.emit('epoxy.js', data);
+        }
+        console.log(data);
+    });
+
+});
