@@ -37,11 +37,14 @@
 <script> 
     Epoxy.initialize();
     Epoxy.addListener(function(id, attr, value) {
+        var first = Epoxy.getValue('firstname');
+        var last  = Epoxy.getValue('lastname');
+
         if (attr == 'event:click') {
-            var first = Epoxy.getValue('firstname', 'value');
-            var last  = Epoxy.getValue('lastname', 'value');
-            Epoxy.setValue('foobar', 'innerText', 'Hello my name is ' + first + ', ' + last);
+            Epoxy.setValue('foobar', 'Hello my name is ' + first + ', ' + last);
         }
+
+        Epoxy.setValue('textareafoo', first + ' ' + last);
     });
 </script>
 
