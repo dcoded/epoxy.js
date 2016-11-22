@@ -3,6 +3,19 @@ The focus of this simple library is to provide the ability to track changes to a
 
 ## Getting Started
 
+### Installation
+
+The files in the lib/ directory can be used standalone of any external dependency.  If you wish to view the kitchensink stuff you can run
+
+```
+git clone https://github.com/dcoded/epoxy.js
+cd epoxy.js
+npm install
+npm test
+```
+
+A test server should be running at [http://localhost:3000/](http://localhost:3000/)
+
 ### Enable binding of an element
 This libary attempts to be unintrusive with existing HTML templates. To enable binding of a DOM element only an addition of a `data-id` attribute is required.
 
