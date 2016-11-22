@@ -51,3 +51,58 @@ Epoxy.addListener(function(id, attr, value) {
     }
 });
 ```
+
+
+#### Create a Socket.IO listener to sync between client and server
+
+Here is an example of integrating Socket.IO into Epoxy.js to sync in real time. This could work with other libraries just as easily.
+
+
+**Client-side**
+
+```
+var EpoxySocketIO = function(url) {
+
+    var CHANNEL = 'epoxy.js';
+    var socket  = io(url);
+
+    return function(id, binder, value) {
+        console.log('EpoxySocketIO: listener');
+
+        socket.emit(CHANNEL, {
+            id : id,
+            binder: binder,
+            value: value
+        });
+
+        socket.on(CHANNEL, function(data) {
+            Epoxy.setValue(data.id, data.value);
+        });
+    };
+};
+```
+
+**Server-side**
+
+```
+var io = require('socket.io')(server);
+io.engine.ws = new (require('uws').Server)({
+    noServer: true,
+    perMessageDeflate: false
+});
+
+
+io.on('connection', function(client) {
+    console.log('Client connected...');
+
+    client.on('epoxy.js', function(data) {
+
+        if (data.value == 'World') {
+            data.value = 'Land';
+            client.emit('epoxy.js', data);
+        }
+        console.log(data);
+    });
+
+});
+```
