@@ -1,0 +1,26 @@
+{
+  "name": "epoxy.js",
+  "version": "0.1.0",
+  "description": "Lightweight and transparent data binding",
+  "main": "test.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dcoded/epoxy.js.git"
+  },
+  "author": "Denis Coady",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dcoded/epoxy.js/issues"
+  },
+  "homepage": "https://github.com/dcoded/epoxy.js#readme"
+}
