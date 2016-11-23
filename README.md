@@ -42,14 +42,17 @@ TODO
 An event is currently limited to DOM events (click, mouseover, keydown, ...) and is propigated by a Binder object.
 
 ```javascript
-Epoxy.addListener(function(id, attr, value) {
-    // if any click enabled binded event triggers then update
-    if (attr == 'event:click') {
-        var first = Data.getValue('firstname', 'value');
-        var last  = Data.getValue('lastname', 'value');
-        Data.setValue('foobar', 'innerText', 'Hello my name is ' + first + ', ' + last);
-    }
-});
+// see: test/index.html
+
+Epoxy.addListener(function(id, binder, value) {
+        var first = Epoxy.getValue('firstname');
+        var last  = Epoxy.getValue('lastname');
+        
+        Epoxy.setValue('textareafoo', first + ' ' + last);
+        if (binder == 'event:click') {
+            Epoxy.setValue('foobar', 'My name is ' + first + ' ' + last);
+        }
+    });
 ```
 
 ## Sync data between server and client
