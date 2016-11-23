@@ -15,6 +15,88 @@
 </head>
 <body>
 
+    <h1>Epoxy.JS Playground</h1>
+
+    <script> 
+    /*  Initialization of library, can be called whenever you want since it     
+        checks the DOM on call and creates a MutationObserver to watch for 
+        future DOM changes.
+    */
+    Epoxy.initialize();
+    </script>
+
+    <section>
+    <h1>Example 1 - A Simple Link</h1>
+    <p>
+        This example create a bind on the hyperlink and watches for anything to happen. Click the below link and see what happens!
+    </p>
+    <a href="/index" data-id="example1-simple-link">A simple link</a>
+    <div data-id="example1-result">Not clicked yet...</div>
+    <script>
+    // Example 1: Simple Link
+    (function() {
+
+    Epoxy.addListener(function(id, binder, value) {
+        if (id == 'example1-simple-link' && binder == 'event:click') {
+            Epoxy.setValue('example1-result', 'Clicked!');
+        }
+    });
+
+    })();
+    </script>
+    </section>
+
+
+
+    <section>
+    <h1>Example 2 - Nest bindings</h1>
+    <p>
+        To keep things simple, a binder is only allowed to get/set <em>one</em> attribute or property. So if we want to both change the hyperlink <em>and</em> the hyperlink text then we need to embed a child binding.
+    </p>
+    <a href="/index" data-id="example2-link">
+        <span data-id="example2-link-text">A simple link</span>
+    </a>
+    <script>
+    // Example 2: Simple Link with dynamic text
+    (function() {
+
+    Epoxy.addListener(function(id, binder, value) {
+        if (id == 'example2-link' && binder == 'event:click') {
+            Epoxy.setValue('example2-link', '#foo');
+            Epoxy.setValue('example2-link-text', 'I was clicked!');
+        }
+    });
+
+    })();
+    </script>
+    </section>
+
+
+    <section>
+    <h1>Example 3 - Live text change</h1>
+    <p>
+        Without much javascript we can change existing page elements based on form inputs.
+    </p>
+    <div>
+        <input type="text" data-id="example3-name" placeholder="What do you like to be called?" />
+    </div>
+    <div data-id="example3-echo"></div>
+    <script>
+    // Example 3: Live text binding
+    (function() {
+
+    Epoxy.addListener(function(id, binder, value) {
+        if (id == 'example3-name') {
+            var name = Epoxy.getValue('example3-name');
+            Epoxy.setValue('example3-echo', 'Hello ' + name + '!');
+        }
+    });
+
+    })();
+    </script>
+    </section>
+
+<!-- 
     <form data-id="some-form">
         <div>
             <input type="text" data-id="firstname" placeholder="First name" />
@@ -31,15 +113,13 @@
     <div data-id="foobar"></div>
     <textarea data-id="textareafoo"></textarea>
 </div>
-
+ -->
 
 <script> 
     Epoxy.initialize();
     Epoxy.addListener(function(id, binder, value) {
         var first = Epoxy.getValue('firstname');
         var last  = Epoxy.getValue('lastname');
-
-        console.log(binder);
 
         if (binder == 'event:click') {
             Epoxy.setValue('foobar', 'Hello my name is ' + first + ', ' + last);
