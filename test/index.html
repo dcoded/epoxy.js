@@ -15,22 +15,20 @@
 </head>
 <body>
 
+    <form data-id="some-form">
+        <div>
+            <input type="text" data-id="firstname" placeholder="First name" />
+        </div>
+        <div>
+            <input type="text" data-id="lastname" placeholder="Last name" />
+        </div>
+        <div>
+            <input type="submit" value="Update" data-id="submitbtn" />
+        </div>
+    </form>
+
 <div>
     <div data-id="foobar"></div>
-
-    <a href="#" data-id="link">test</a>
-
-    <input  type="text"
-            data-id="firstname"
-            placeholder="First name" />
-
-    <input  type="text"
-            data-id="lastname"
-            placeholder="Last name" />
-
-    <input  type="submit"
-            data-id="a button" />
-
     <textarea data-id="textareafoo"></textarea>
 </div>
 
@@ -40,6 +38,8 @@
     Epoxy.addListener(function(id, binder, value) {
         var first = Epoxy.getValue('firstname');
         var last  = Epoxy.getValue('lastname');
+
+        console.log(binder);
 
         if (binder == 'event:click') {
             Epoxy.setValue('foobar', 'Hello my name is ' + first + ', ' + last);
