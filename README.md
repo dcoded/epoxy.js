@@ -29,7 +29,7 @@ Original | Epoxy binded
 
 Developers have control over when Epoxy.js is initialized and is not dependent on source code location or DOM initialization state. Somewhere on the page the initialization function needs to be called.
 
-```
+```javascript
 // Load Epoxy.JS and create bindings
 Epoxy.initialize();
 ``` 
@@ -41,7 +41,7 @@ TODO
 ### Add an event listener
 An event is currently limited to DOM events (click, mouseover, keydown, ...) and is propigated by a Binder object.
 
-```
+```javascript
 Epoxy.addListener(function(id, attr, value) {
     // if any click enabled binded event triggers then update
     if (attr == 'event:click') {
@@ -52,15 +52,16 @@ Epoxy.addListener(function(id, attr, value) {
 });
 ```
 
+## Sync data between server and client
+Currently this library is transport agnostic and is up to the developer for implementation.
 
-#### Create a Socket.IO listener to sync between client and server
-
+### Example: Create a Socket.IO listener
 Here is an example of integrating Socket.IO into Epoxy.js to sync in real time. This could work with other libraries just as easily.
 
 
 **Client-side**
 
-```
+```javascript
 // see: lib/epoxy.socketio.js
 
 var EpoxySocketIO = function(url) {
