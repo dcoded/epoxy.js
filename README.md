@@ -61,6 +61,8 @@ Here is an example of integrating Socket.IO into Epoxy.js to sync in real time. 
 **Client-side**
 
 ```
+// see: https://github.com/dcoded/epoxy.js/lib/epoxy.socketio.js
+
 var EpoxySocketIO = function(url) {
 
     var CHANNEL = 'epoxy.js';
@@ -82,9 +84,17 @@ var EpoxySocketIO = function(url) {
 };
 ```
 
+```
+<!-- see: https://github.com/dcoded/epoxy.js/test/index.html -->
+
+Epoxy.addListener(EpoxySocketIO('http://localhost:3000'));
+```
+
 **Server-side**
 
 ```
+// see: https://github.com/dcoded/epoxy.js/test.js
+
 var io = require('socket.io')(server);
 io.engine.ws = new (require('uws').Server)({
     noServer: true,
