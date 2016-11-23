@@ -45,14 +45,14 @@ An event is currently limited to DOM events (click, mouseover, keydown, ...) and
 // see: test/index.html
 
 Epoxy.addListener(function(id, binder, value) {
-        var first = Epoxy.getValue('firstname');
-        var last  = Epoxy.getValue('lastname');
-        
-        Epoxy.setValue('textareafoo', first + ' ' + last);
-        if (binder == 'event:click') {
-            Epoxy.setValue('foobar', 'My name is ' + first + ' ' + last);
-        }
-    });
+    var first = Epoxy.getValue('firstname');
+    var last  = Epoxy.getValue('lastname');
+    
+    Epoxy.setValue('textareafoo', first + ' ' + last);
+    if (binder == 'event:click') {
+        Epoxy.setValue('foobar', 'My name is ' + first + ' ' + last);
+    }
+});
 ```
 
 ## Sync data between server and client
