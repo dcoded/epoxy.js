@@ -7,7 +7,7 @@ The focus of this simple library is to provide the ability to track changes to a
 
 The files in the **lib/** directory can be used standalone of any external dependency.  If you wish to view the kitchensink stuff you can run
 
-```
+```bash
 git clone https://github.com/dcoded/epoxy.js
 cd epoxy.js
 npm install
@@ -85,7 +85,7 @@ var EpoxySocketIO = function(url) {
 };
 ```
 
-```
+```html
 <!-- see: test/index.html -->
 
 Epoxy.addListener(EpoxySocketIO('http://localhost:3000'));
@@ -93,7 +93,7 @@ Epoxy.addListener(EpoxySocketIO('http://localhost:3000'));
 
 **Server-side**
 
-```
+```javascript
 // see: test.js
 
 var io = require('socket.io')(server);
